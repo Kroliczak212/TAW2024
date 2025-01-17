@@ -1,0 +1,9 @@
+.img-thumbnail {
+  border-radius: 8px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.img-thumbnail:hover {
+  
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}

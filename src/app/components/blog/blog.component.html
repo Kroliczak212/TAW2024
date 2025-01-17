@@ -1,0 +1,21 @@
+<div class="container">
+        <h1 >Blog – Lista postów</h1>
+
+  
+        <add-post></add-post>
+  
+    <!-- Lista postów -->
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      <div class="card" *ngFor="let item of items">
+        <blog-item
+          [image]="item.image"
+          [text]="item.text"
+          [title]="item.title"
+          [id]="item.id">
+        </blog-item>
+      </div>
+    </div>
+  
+        <gallery></gallery>
+  </div>
+  

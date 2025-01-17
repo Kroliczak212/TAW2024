@@ -1,0 +1,26 @@
+<div class="mt-3 p-2 border border-secondary rounded">
+    <h6>Komentarze:</h6>
+  
+    <!-- Lista komentarzy -->
+    <div class="mb-2" *ngFor="let comment of comments">
+      <small class="text-muted">
+        {{ comment.date | date:'short' }}:
+      </small>
+      <p>{{ comment.text }}</p>
+    </div>
+  
+    <!-- Formularz dodawania komentarza -->
+    <div class="mt-2">
+      <label for="newComment" class="form-label">Dodaj komentarz:</label>
+      <textarea
+        id="newComment"
+        [(ngModel)]="newCommentText"
+        class="form-control"
+        rows="2"
+      ></textarea>
+      <button class="btn btn-sm btn-primary mt-2" (click)="addComment()">
+        Dodaj
+      </button>
+    </div>
+  </div>
+  
