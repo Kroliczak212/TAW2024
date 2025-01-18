@@ -1,0 +1,16 @@
+<div class="container">
+    <h1>Szukaj postu</h1>
+    <div class="search-bar">
+      <div class="mb-3">
+        <input
+          type="text"
+          [(ngModel)]="filterText"
+          (ngModelChange)="sendFilter()"
+          placeholder="Szukaj..."
+          class="form-control"
+          textFormat
+        />
+      </div>
+    </div>
+  </div>
+  

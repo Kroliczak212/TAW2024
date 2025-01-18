@@ -1,0 +1,8 @@
+<div class="container">
+    <app-search-bar (name)="getName($event)"></app-search-bar>
+    <div class="buttondiv">
+    <button (click)="refreshPosts()" class="btn btn-primary mb-3">Odśwież posty</button>
+    </div>
+    <blog [filterText]="filterText"></blog>
+  </div>
+  

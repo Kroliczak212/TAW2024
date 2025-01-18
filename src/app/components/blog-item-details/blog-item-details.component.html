@@ -1,0 +1,14 @@
+<div class="container py-5">
+    <div class="card shadow-sm border-1">
+        <div class="card-body">
+            <h1 class="card-title text-center ">{{ title }}</h1>
+            <img [src]="image" alt="{{ title }}" class="img-fluid rounded mb-4 mx-auto d-block" style="max-height: 300px; object-fit: cover;" />
+            <p class="card-text text-center">{{ text }}</p>
+            <div class="text-center ">
+                <button (click)="goBack()" class="btn btn-primary ">
+                    Powrót
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

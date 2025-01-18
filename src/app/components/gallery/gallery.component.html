@@ -1,0 +1,43 @@
+<div>
+  <h5>Galeria</h5>
+  <div class="row">
+    <div class="col-md-3 col-sm-4 col-6 mb-3" *ngFor="let img of images">
+      <img
+        [src]="img"
+        alt="galeria"
+        class="img-thumbnail"
+        (click)="enlarge(img)"
+        style="max-width: 100%; cursor: pointer;"
+      />
+    </div>
+  </div>
+</div>
+
+<!-- Modal powiększonego zdjęcia -->
+<div
+  class="modal fade show"
+  tabindex="-1"
+  role="dialog"
+  style="display: block;"
+  *ngIf="enlargedImage"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <img
+          [src]="enlargedImage"
+          alt="powiększony obraz"
+          style="max-width: 100%;"
+        />
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="closeEnlarge()">Zamknij</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="modal-backdrop fade show"
+  *ngIf="enlargedImage"
+  (click)="closeEnlarge()"
+></div>

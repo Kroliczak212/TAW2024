@@ -1,0 +1,30 @@
+<div class="container">
+  <h1>Blog – Lista postów</h1>
+
+  <!-- Dodawanie nowego posta -->
+  <add-post></add-post>
+
+  <!-- Lista postów -->
+  <div *ngIf="(items$ | filter:filterText).length > 0; else noResults" class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="col" *ngFor="let item of items$ | filter:filterText">
+      <div class="card">
+        <blog-item
+          [image]="item.image"
+          [text]="item.text"
+          [title]="item.title"
+          [id]="item._id">
+        </blog-item>
+      </div>
+    </div>
+  </div>
+
+  <!-- Szablon dla pustej listy -->
+  <ng-template #noResults>
+    <div class="text-center w-100">
+      <p class="text-muted">Brak wyników spełniających kryteria wyszukiwania.</p>
+    </div>
+  </ng-template>
+
+  <!-- Galeria -->
+  <gallery></gallery>
+</div>

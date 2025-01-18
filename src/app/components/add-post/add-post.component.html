@@ -1,0 +1,46 @@
+<div class="container mt-4">
+  <h3>Dodaj nowy post</h3>
+  <div class="mb-3">
+    <label for="title" class="form-label">Tytuł</label>
+    <input
+      type="text"
+      id="title"
+      class="form-control"
+      [(ngModel)]="title"
+      placeholder="Wpisz tytuł"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="text" class="form-label">Treść</label>
+    <textarea
+      id="text"
+      class="form-control"
+      rows="3"
+      [(ngModel)]="text"
+    ></textarea>
+  </div>
+
+  <div class="mb-3">
+    <label for="image" class="form-label">Adres URL obrazu</label>
+    <input
+      type="text"
+      id="image"
+      class="form-control"
+      [(ngModel)]="imageUrl"
+      (input)="updatePreview()"
+      placeholder="Wprowadź adres URL obrazu"
+    />
+  </div>
+
+  <div class="mb-3 text-center" *ngIf="imagePreview">
+    <img
+      [src]="imagePreview"
+      alt="Podgląd obrazka"
+      class="img-thumbnail"
+      style="max-width: 300px"
+    />
+  </div>
+
+  <button class="btn btn-success" (click)="addPost()">Dodaj post</button>
+</div>
