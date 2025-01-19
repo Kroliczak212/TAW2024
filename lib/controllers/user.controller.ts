@@ -26,21 +26,38 @@ class UserController implements Controller {
     }
 
     private authenticate = async (request: Request, response: Response, next: NextFunction) => {
-        const {login, password} = request.body;
+        const { login, password } = request.body;
 
         try {
+            // Pobierz użytkownika na podstawie loginu (email lub nazwa użytkownika)
             const user = await this.userService.getByEmailOrName(login);
             if (!user) {
-                response.status(401).json({error: 'Unauthorized'});
+                return response.status(401).json({ error: 'Unauthorized: User not found' });
             }
-            await this.passwordService.authorize(user.id, await this.passwordService.hashPassword(password));
+
+            // Pobierz hasło użytkownika z kolekcji Password
+            const userPassword = await this.passwordService.getPasswordByUserId(user._id);
+            if (!userPassword) {
+                return response.status(401).json({ error: 'Unauthorized: Password not found' });
+            }
+
+            // Sprawdź, czy hasło jest poprawne
+            const isPasswordValid = await this.passwordService.comparePassword(password, userPassword.password);
+            if (!isPasswordValid) {
+                return response.status(401).json({ error: 'Unauthorized: Invalid password' });
+            }
+
+            // Tworzenie tokena w przypadku poprawnej autoryzacji
             const token = await this.tokenService.create(user);
             response.status(200).json(this.tokenService.getToken(token));
         } catch (error) {
             console.error(`Validation Error: ${error.message}`);
-            response.status(401).json({error: 'Unauthorized'});
+            response.status(500).json({ error: 'Internal Server Error' });
         }
     };
+
+
+
 
     private createNewOrUpdate = async (request: Request, response: Response, next: NextFunction) => {
         const userData = request.body;

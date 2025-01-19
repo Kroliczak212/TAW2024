@@ -12,18 +12,23 @@ class PasswordService {
         return result;
     }
 
-    public async authorize(userId: string, password: string) {
-        try {
-            const result = await PasswordModel.findOne({ userId: userId, password: password });
-            if (result) {
-                return true;
-            }
-        } catch (error) {
-            console.error('Wystąpił błąd podczas tworzenia danych:', error);
-            throw new Error('Wystąpił błąd podczas tworzenia danych');
-        }
-
+    public async comparePassword(rawPassword: string, hashedPassword: string): Promise<boolean> {
+        const result = await bcrypt.compare(rawPassword, hashedPassword);
+        console.log(`Comparing passwords: ${rawPassword} vs hash: ${hashedPassword}. Result: ${result}`);
+        return result;
     }
+
+
+
+    public async getPasswordByUserId(userId: string) {
+        try {
+            return await PasswordModel.findOne({ userId });
+        } catch (error) {
+            console.error('Error while fetching password:', error);
+            throw new Error('Error while fetching password');
+        }
+    }
+
 
     public async changePassword(userId: string, oldPassword: string, newPassword: string) {
         try {
