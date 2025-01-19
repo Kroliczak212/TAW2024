@@ -4,6 +4,24 @@
 }
 
 .img-thumbnail:hover {
-  
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Rozciągnięcie i wycentrowanie modalu */
+.modal-content {
+  width: 100%;
+  max-width: unset;
+  margin: 0 auto;
+}
+
+.modal-body img {
+  width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.modal-dialog {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -34,6 +34,22 @@ export class BlogItemDetailsComponent implements OnInit {
   }
 
   goBack(): void {
-    this.router.navigate(['']);
+    this.router.navigate(['blog']);
   }
+
+  deletePost(): void {
+    if (confirm('Czy na pewno chcesz usunąć ten post?')) {
+      this.dataService.deletePostById(this.id).subscribe(
+        () => {
+          alert('Post został usunięty.');
+          this.router.navigate(['/blog']); // Przekierowanie po usunięciu
+        },
+        (error) => {
+          console.error('Błąd podczas usuwania posta:', error);
+          alert('Wystąpił błąd podczas usuwania posta.');
+        }
+      );
+    }
+  }
+  
 }

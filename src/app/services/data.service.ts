@@ -31,5 +31,8 @@ export class DataService {
     return this.http.get<any>(`${this.url}/api/post/${id}`); // Backend musi obsłużyć trasę /api/posts/:id
   }
   
+  deletePostById(id: string): Observable<any> {
+    return this.http.delete<any>(`${this.url}/api/post/${id}`);
+  }
   
 }

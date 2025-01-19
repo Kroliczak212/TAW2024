@@ -10,7 +10,7 @@ import { FilterTextPipe } from '../../pipes/filter-text.pipe';
 @Component({
   selector: 'blog',
   standalone: true,
-  imports: [ CommonModule, BlogItemComponent, AddPostComponent, GalleryComponent,FilterTextPipe],
+  imports: [ CommonModule, BlogItemComponent,FilterTextPipe],
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.css'],
 })

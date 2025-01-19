@@ -1,9 +1,6 @@
 <div class="container">
   <h1>Blog – Lista postów</h1>
 
-  <!-- Dodawanie nowego posta -->
-  <add-post></add-post>
-
   <!-- Lista postów -->
   <div *ngIf="(items$ | filter:filterText).length > 0; else noResults" class="row row-cols-1 row-cols-md-2 g-4">
     <div class="col" *ngFor="let item of items$ | filter:filterText">
@@ -25,6 +22,5 @@
     </div>
   </ng-template>
 
-  <!-- Galeria -->
-  <gallery></gallery>
+  
 </div>
